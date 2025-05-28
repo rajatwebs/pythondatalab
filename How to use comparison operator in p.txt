@@ -1,0 +1,191 @@
+How to use comparison operator in python pandas DataFrame syntax with example?
+
+Roll	Name	Marks
+0	10	Rajat	434
+1	11	Roni	354
+2	12	Riya	432
+3	13	Neel	243
+4	14	Braja	332
+5	15	Chitan	352
+6	16	Amal	435
+7	17	Bimol	378
+8	18	Arnab	423
+9	19	Souvik	389
+10	20	Shilpa	455
+
+=============================================================================
+Ans:-
+
+In Pandas, you can use comparison operators to filter and manipulate DataFrames. These operators are used to compare values within a DataFrame or Series, and they return a boolean result (True or False). The common comparison operators in Python are:
+
+- `==`: Equal to
+- `!=`: Not equal to
+- `>`: Greater than
+- `<`: Less than
+- `>=`: Greater than or equal to
+- `<=`: Less than or equal to
+
+### Example with your DataFrame
+
+Let's assume you have the following DataFrame:
+
+```python
+import pandas as pd
+
+# Create the DataFrame
+data = {
+    'Roll': [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    'Name': ['Rajat', 'Roni', 'Riya', 'Neel', 'Braja', 'Chitan', 'Amal', 'Bimol', 'Arnab', 'Souvik', 'Shilpa'],
+    'Marks': [434, 354, 432, 243, 332, 352, 435, 378, 423, 389, 455]
+}
+
+df = pd.DataFrame(data)
+```
+
+### 1. **Comparing Marks with a threshold**
+
+#### a) Find students who have marks greater than 400:
+
+```python
+df[df['Marks'] > 400]
+```
+
+**Output:**
+
+```
+   Roll    Name  Marks
+0    10   Rajat    434
+2    12    Riya    432
+6    16    Amal    435
+8    18   Arnab    423
+10   20  Shilpa    455
+```
+
+#### b) Find students who have marks less than 350:
+
+```python
+df[df['Marks'] < 350]
+```
+
+**Output:**
+
+```
+   Roll   Name  Marks
+3    13   Neel    243
+4    14  Braja    332
+5    15 Chitan    352
+```
+
+### 2. **Equality comparison**
+
+#### a) Find students who have exactly 432 marks:
+
+```python
+df[df['Marks'] == 432]
+```
+
+**Output:**
+
+```
+   Roll   Name  Marks
+2    12   Riya    432
+```
+
+### 3. **Inequality comparison**
+
+#### a) Find students whose marks are not equal to 354:
+
+```python
+df[df['Marks'] != 354]
+```
+
+**Output:**
+
+```
+   Roll    Name  Marks
+0    10   Rajat    434
+2    12    Riya    432
+3    13    Neel    243
+4    14   Braja    332
+5    15  Chitan    352
+6    16    Amal    435
+7    17   Bimol    378
+8    18   Arnab    423
+9    19  Souvik    389
+10   20  Shilpa    455
+```
+
+### 4. **Using multiple comparisons (AND/OR)**
+
+You can also use multiple conditions. Pandas allows logical operations like `&` (and), `|` (or), `~` (not) to combine conditions.
+
+#### a) Find students who have marks greater than 350 and less than 450:
+
+```python
+df[(df['Marks'] > 350) & (df['Marks'] < 450)]
+```
+
+**Output:**
+
+```
+   Roll   Name  Marks
+0    10  Rajat    434
+2    12   Riya    432
+6    16   Amal    435
+8    18  Arnab    423
+9    19 Souvik    389
+```
+
+#### b) Find students who have marks greater than 400 or less than 350:
+
+```python
+df[(df['Marks'] > 400) | (df['Marks'] < 350)]
+```
+
+**Output:**
+
+```
+   Roll    Name  Marks
+0    10   Rajat    434
+2    12    Riya    432
+3    13   Neel    243
+4    14  Braja    332
+5    15 Chitan    352
+6    16   Amal    435
+7    17  Bimol    378
+8    18  Arnab    423
+9    19 Souvik    389
+10   20  Shilpa    455
+```
+
+### 5. **Using `.query()` Method**
+
+You can also use the `.query()` method for more readable queries, especially when combining multiple conditions.
+
+#### a) Find students with marks greater than 400 and less than 450:
+
+```python
+df.query('Marks > 400 and Marks < 450')
+```
+
+**Output:**
+
+```
+   Roll   Name  Marks
+0    10  Rajat    434
+2    12   Riya    432
+6    16   Amal    435
+8    18  Arnab    423
+9    19 Souvik    389
+```
+
+### Summary of Common Comparison Operators
+
+- **`==`** : Equal to
+- **`!=`** : Not equal to
+- **`>`** : Greater than
+- **`<`** : Less than
+- **`>=`** : Greater than or equal to
+- **`<=`** : Less than or equal to
+
+You can use these operators to filter DataFrame rows, compare values, and perform logical operations.

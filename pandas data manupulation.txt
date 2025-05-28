@@ -1,0 +1,89 @@
+import pandas as pd
+df = pd.read_csv(r"C:\Users\Lenovo\Desktop\Python Lab\Data\student_data.csv")
+df
+
+==============================================================================
+
+df["Marks"].describe()
+
+===============================================================
+
+df[(df["Marks"] > 450) | (df["Name"].str.contains('Am'))]
+
+===============================================================
+
+df[df['Name'].str.contains('A')]
+
+============================================
+
+df['Name'].str.replace('A', 'a')
+
+============================================
+
+df[(df["Marks"]>350) & (df["Marks"]<400)]
+
+============================================
+df.sort_values(by='Marks')
+
+============================================
+
+df.sort_values(by='Marks', ascending=False)
+
+============================================
+
+
+WORKINT WITH SALES DATA
+=======================
+
+import pandas as pd
+df = pd.read_csv("sales_data.csv")
+df
+
+===================================
+
+import pandas as pd
+df = pd.read_csv("sales_data.csv")
+df.shape
+===================================
+df.info()
+===================================
+df.isnull().sum()
+===================================
+import pandas as pd
+df = pd.read_csv("sales_data.csv")
+df["Payment Method"] == "Credit Card"
+
+==========================================
+
+count = (df["Payment Method"] == "Credit Card").sum()
+print("\nTotal number of products purchase with Credit Card",count)
+
+====================================================================
+
+count = (df["Payment Method"] == "Debit Card").sum()
+print("\nTotal number of products purchase with Credit Card",count)
+
+====================================================================
+
+count = (df["Payment Method"] == "Debit Card").sum()
+print("\n Total number of products purchase with Credit Card",count)
+
+===================================================================
+
+df["Total Revenue"].sum()
+
+============================
+
+credit_card_revenue = df[df["Payment Method"] == "Credit Card"]["Total Revenue"].sum()
+print(credit_card_revenue)
+
+===========================
+
+debit_card_revenue = df[df["Payment Method"] == "Debit Card"]["Total Revenue"].sum()
+print(debit_card_revenue)
+
+=====================================================================================
+
+
+
+
